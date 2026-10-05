@@ -1,0 +1,8 @@
+{% macro field(input) %}
+<div class="mb-3">
+  {{ input.label(class_='form-label') }}
+  {{ input(class_=('form-select' if input.type == 'SelectField' else 'form-control') + (' is-invalid' if input.errors else ''), **({'rows': 5} if input.type == 'TextAreaField' else {})) }}
+  {% for error in input.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+</div>
+{% endmacro %}
+{% macro badge(status) %}<span class="status status-{{ status|lower }}">{{ status }}</span>{% endmacro %}
